@@ -72,10 +72,10 @@ func updateAddress(b ext.Bot, u *gotgbot.Update) error {
 	textg := u.EffectiveMessage.Text
 	var text = strings.Fields(textg)
 	var chat_id = u.EffectiveChat.Id
-	var res, err = b.GetChatMember(os.Getenv("group_id"), chat_id)
+	var res, err = b.GetChatMember(strconv.Atoi(os.Getenv("group_id")), chat_id)
 
 	if res.Status != "left" {
-		var res, err = b.GetChatMember(os.Getenv("channel_id"), chat_id)
+		var res, err = b.GetChatMember(strconv.Atoi(os.Getenv("channel_id")), chat_id)
 		_ = err
 
 		if res.Status != "left" {
@@ -111,7 +111,7 @@ func updateAddress(b ext.Bot, u *gotgbot.Update) error {
 	}
 	_ = err
 	if res.Status == "left" {
-		var res, err = b.GetChatMember(-1001153791846, chat_id)
+		var res, err = b.GetChatMember(strconv.Atoi(os.Getenv("channel_id")), chat_id)
 		_ = err
 
 		if res.Status == "left" {
@@ -126,10 +126,10 @@ func addtwit(b ext.Bot, u *gotgbot.Update) error {
 	textg := u.EffectiveMessage.Text
 	var text = strings.Fields(textg)
 	var chat_id = u.EffectiveChat.Id
-	var res, err = b.GetChatMember(-1001153791846, chat_id)
+	var res, err = b.GetChatMember(strconv.Atoi(os.Getenv("group_id")), chat_id)
 
 	if res.Status != "left" {
-		var res, err = b.GetChatMember(-1001153791846, chat_id)
+		var res, err = b.GetChatMember(strconv.Atoi(os.Getenv("channel_id")), chat_id)
 		_ = err
 
 		if res.Status != "left" {
@@ -155,7 +155,7 @@ func addtwit(b ext.Bot, u *gotgbot.Update) error {
 	}
 	_ = err
 	if res.Status == "left" {
-		var res, err = b.GetChatMember(-1001153791846, chat_id)
+		var res, err = b.GetChatMember(strconv.Atoi(os.Getenv("channel_id")), chat_id)
 		_ = err
 
 		if res.Status == "left" {
@@ -174,9 +174,9 @@ func info(b ext.Bot, u *gotgbot.Update) error {
 func verify(b ext.Bot, u *gotgbot.Update) error {
 	var chat_id int = u.EffectiveChat.Id
 	if u.EffectiveMessage.Text == "✅ Submit Info" {
-		var res, err = b.GetChatMember(-1001153791846, chat_id)
+		var res, err = b.GetChatMember(strconv.Atoi(os.Getenv("group_id")), chat_id)
 		if res.Status != "left" {
-			var res, err = b.GetChatMember(-1001153791846, chat_id)
+			var res, err = b.GetChatMember(strconv.Atoi(os.Getenv("channel_id")), chat_id)
 			_ = err
 
 			if res.Status != "left" {
@@ -195,7 +195,7 @@ func verify(b ext.Bot, u *gotgbot.Update) error {
 		}
 		_ = err
 		if res.Status == "left" {
-			var res, err = b.GetChatMember(-1001153791846, chat_id)
+			var res, err = b.GetChatMember(strconv.Atoi(os.Getenv("channel_id")), chat_id)
 			_ = err
 
 			if res.Status == "left" {
